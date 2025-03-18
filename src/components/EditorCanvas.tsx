@@ -1,4 +1,4 @@
-// components/EditorCanvas.tsx
+
 import React, { useEffect, useRef } from 'react';
 
 interface RatingField {
@@ -9,13 +9,20 @@ interface RatingField {
 }
 
 interface EditorCanvasProps {
-  content: { [key: string]: string };
+  content: {
+    [key: string]: string;
+  };
   activeField: string;
   cursorPosition: number | null;
   ratings: RatingField[];
 }
 
-const EditorCanvas: React.FC<EditorCanvasProps> = ({ content, activeField, cursorPosition, ratings }) => {
+const EditorCanvas: React.FC<EditorCanvasProps> = ({ 
+  content, 
+  activeField,
+  cursorPosition,
+  ratings 
+}) => {
   const containerRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
@@ -31,7 +38,7 @@ const EditorCanvas: React.FC<EditorCanvasProps> = ({ content, activeField, curso
       style={{ height: 'calc(100vh - 60px)', marginRight: '320px' }}
     >
       <div className="max-w-4xl mx-auto">
-        {/* Рейтинги для мобильных устройств */}
+        {/* Рейтинги на мобильном устройстве */}
         <div className="md:hidden mb-8 p-4 rounded-lg bg-gradient-to-br from-gray-900 to-black border border-editor-separator">
           <h2 className="text-editor-text font-medium mb-4 text-xl">Оценки</h2>
           <div className="grid grid-cols-2 gap-4">
@@ -52,7 +59,7 @@ const EditorCanvas: React.FC<EditorCanvasProps> = ({ content, activeField, curso
           </div>
         </div>
 
-        {/* Рейтинги для десктопа */}
+        {/* Рейтинги на десктопе (видны в боковой панели) */}
         <div className="hidden md:block mb-8 p-6 rounded-lg bg-gradient-to-br from-gray-900 to-black border border-editor-separator">
           <div className="grid grid-cols-2 gap-6">
             {ratings.map((rating) => (
@@ -75,7 +82,7 @@ const EditorCanvas: React.FC<EditorCanvasProps> = ({ content, activeField, curso
         </div>
 
         {Object.keys(content).map((field) => (
-          <div key={field} className="mb-8 animate-text-focus-in" style={{ animationDelay: `${Object.keys(content).indexOf(field) * 0.1}s` }}>
+          <div key={field} className="mb-8 animate-text-focus-in" style={{animationDelay: `${Object.keys(content).indexOf(field) * 0.1}s`}}>
             <div className="editor-label mb-2">{field}</div>
             <div className="editor-text text-xl">
               {content[field]}
